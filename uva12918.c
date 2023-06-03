@@ -11,12 +11,9 @@ while(T--){
         val--;
         total+=tries;
     }
-    printf("%d", total);
+    printf("%d\n", total);
 
 }
-
-
-
-
+
     return 0;
 }
