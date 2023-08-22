@@ -28,7 +28,7 @@ for(int j =0; j < n; j++){
 
 for(int i = 0; i < n; i++){
     int count = 0;
-    if(incr[i] == temp){    //checking the repeatition in incremented array
+    if(incr[i] == temp){    //checking the repetition in incremented array
         count++;
     }
     v1 += count;
@@ -36,7 +36,7 @@ for(int i = 0; i < n; i++){
 
 for(int i = 0; i < n; i++){
     int count = 0;
-    if(decr[i] == temp){    //checking the repeatition in decremented array
+    if(decr[i] == temp){    //checking the repetition in decremented array
         count++;
     }
     v2 += count;
@@ -44,7 +44,7 @@ for(int i = 0; i < n; i++){
 
 for(int i = 0; i < n; i++){
     int count = 0;
-    if(orginal[i] == temp){ //checking the repeatition in original array
+    if(orginal[i] == temp){ //checking the repetition in original array
         count++;
     }
     v3 += count;
@@ -52,7 +52,7 @@ for(int i = 0; i < n; i++){
 
 total = v1 + v2 + v3;   //adding it all up to see how many times it appeared in all arrays
                         //in total
-max[j] = total; //assigning the total value of repeatition of each element to another array
+max[j] = total; //assigning the total value of repetition of each element to another array
 v1 = 0; //resetting the values for the variables 
 v2 = 0;
 v3 = 0;
