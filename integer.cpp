@@ -16,31 +16,53 @@ int maxelement(int arr[], int n){//Recursive function to find the largest elemen
     }
 }
 
+void input(int arr[], int n){   //recursive function to take inputs of an array
+    if(n <= 0){
+        return;
+    }
+    else{
+        input(arr, n - 1);
+        scanf("%d", &arr[n - 1]);
+    }
+}
+
+void incre(int *arr,size_t n){  //recursive fucntion to increment each element of an array by 1
+    if(n == 0) return;
+
+    (*arr)++;
+
+    incre(arr + 1, n - 1);
+}
+
+void decre(int *arr, size_t n){ //recursive function to decrement each element of an array by 1
+    if(n == 0) return;
+
+    (*arr)--;
+
+    decre(arr + 1, n - 1);
+}
+
 int main(){
 
 int n, temp = 0, v1 = 0, v2 = 0, v3 = 0, largest, value;
 
 scanf("%d", &n);
 
-int orginal[n], incr[n], decr[n], max[n];
+int original[n], incr[n], decr[n], max[n];
+
+input(original, n); //inputing the elements using recursion
+memcpy(incr, original, sizeof(original));//copying the elements to incr array
+memcpy(decr, original, sizeof(original));//copying the elements to decre array
+incre(incr, n); //incrementing each element by 1 using recursion
+decre(decr, n); //decrementing each element by 1 using recursion
 
 for(int i = 0; i < n; i++){
 
-    scanf("%d", &orginal[i]); //original sequence
-
-    incr[i] = orginal[i];   //incremented sequence
-    incr[i] += 1;
-    decr[i] = orginal[i];   //decremented sequence
-    decr[i] -= 1;
-}
-
-for(int i = 0; i < n; i++){
-
-    value = orginal[i]; //assigning each element to value to check how many times it
+    value = original[i]; //assigning each element to value to check how many times it
                         //is repeated in the three arrays
 
     for(int j = 0; j < n; j++){
-        if(value == orginal[j]){
+        if(value == original[j]){
             v1++;   //checking in the original array
     }
         if(value == incr[j]){
@@ -63,10 +85,10 @@ for(int i = 0; i < n; i++){
     
 }
 
-largest = maxelement(max , n); //calling the function
+largest = maxelement(max , n); //finding the largest number using recursion
 
 
-printf("%d", largest);    //printing the maxmimum number 
+printf("%d", largest);    //printing the largest number 
 
     return 0;
 }
