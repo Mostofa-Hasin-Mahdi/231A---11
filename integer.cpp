@@ -3,9 +3,22 @@
 #include <iostream>
 #include <cstdio>
 #include<stdio.h>
+
+int maxelement(int arr[], int n){//Recursive function to find the largest element
+                                //of an array
+    int max;
+    if(n == 1){
+        return arr[0];
+    }
+    else{
+        max = maxelement(arr , n-1);
+        return(max > arr[n-1] ? max : arr[n-1]);
+    }
+}
+
 int main(){
 
-int n, temp = 0, v1 = 0, v2 = 0, v3 = 0, total = 0, value;
+int n, temp = 0, v1 = 0, v2 = 0, v3 = 0, largest, value;
 
 scanf("%d", &n);
 
@@ -21,53 +34,39 @@ for(int i = 0; i < n; i++){
     decr[i] -= 1;
 }
 
-for(int j =0; j < n; j++){
-
-    temp = orginal[j]; //storing each value of the original sequence to check how many
-                        //times it is repeated in each array
-
 for(int i = 0; i < n; i++){
-    int count = 0;
-    if(incr[i] == temp){    //checking the repetition in incremented array
-        count++;
+
+    value = orginal[i]; //assigning each element to value to check how many times it
+                        //is repeated in the three arrays
+
+    for(int j = 0; j < n; j++){
+        if(value == orginal[j]){
+            v1++;   //checking in the original array
     }
-    v1 += count;
-}
-
-for(int i = 0; i < n; i++){
-    int count = 0;
-    if(decr[i] == temp){    //checking the repetition in decremented array
-        count++;
+        if(value == incr[j]){
+            v2++;   //checking in the incremented array
     }
-    v2 += count;
-}
-
-for(int i = 0; i < n; i++){
-    int count = 0;
-    if(orginal[i] == temp){ //checking the repetition in original array
-        count++;
+        if(value == decr[j]){
+            v3++;   //checking in the decremented array
     }
-    v3 += count;
-}
 
-total = v1 + v2 + v3;   //adding it all up to see how many times it appeared in all arrays
-                        //in total
-max[j] = total; //assigning the total value of repetition of each element to another array
-v1 = 0; //resetting the values for the variables 
-v2 = 0;
-v3 = 0;
-total = 0;
-}
-
-value = max[0];
-
-for(int i = 0; i < n; i++){
-    if(max[i] > value){
-        value = max[i]; //finding the maximum number of times an element appeared in total
+    temp = v1 + v2 + v3; //adding it all up to see the number of times an element is
+                        //is repeated in the three arrays
     }
+
+    max[i] = temp;  //a new array that consinsts the number of times of repetition of each
+                    //element
+    temp = 0;   //resetting the variables
+    v1 = 0;
+    v2 = 0;
+    v3 = 0;
+    
 }
 
-printf("%d", value);    //printing the maxmimum number 
+largest = maxelement(max , n); //calling the function
+
+
+printf("%d", largest);    //printing the maxmimum number 
 
     return 0;
 }
